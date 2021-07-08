@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        if (UIManager.Instance.Controls.HorizontalAxis != 0)
+            movement.x = UIManager.Instance.Controls.HorizontalAxis;
+        if (UIManager.Instance.Controls.VerticalAxis != 0)
+            movement.y = UIManager.Instance.Controls.VerticalAxis;
+
         movement.Normalize();
         rb2D.velocity = movement * movementSpeed;
         SetLightRotatoin(animator.GetFloat("XDir"), animator.GetFloat("YDir"));

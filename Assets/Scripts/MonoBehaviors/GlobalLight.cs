@@ -15,6 +15,7 @@ public class GlobalLight : MonoBehaviour
         StartCoroutine(FadeOut());
 
         GameManager.Instance.JewelryFound.AddListener(SwitchOn);
+        GameManager.Instance.PlayerDetected.AddListener(OnPlayerDetected);
     }
 
     void SwitchOn()
@@ -34,7 +35,6 @@ public class GlobalLight : MonoBehaviour
     IEnumerator FlickerGreen()
     {
 
-        var dr = flickerDuration / 2;
         light2D.color = Color.green;
         while (flickerDuration > 0)
         {
@@ -43,16 +43,13 @@ public class GlobalLight : MonoBehaviour
             else
                 light2D.intensity = 1;
             flickerDuration -= .1f;
-            if (flickerDuration < dr)
-            {
-                int stars = 3;
-                if (UIManager.Instance.TopBar.IsTimeDone())
-                    stars--;
-                if (UIManager.Instance.TopBar.GetLightsNumber() == 0)
-                    stars--;
-                UIManager.Instance.WinMenu.Show(stars);
-            }
             yield return new WaitForSeconds(.1f);
         }
+    }
+    void OnPlayerDetected()
+    {
+        StopAllCoroutines();
+        light2D.intensity = .5f;
+        light2D.color = Color.red;
     }
 }

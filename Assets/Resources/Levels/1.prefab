@@ -4217,7 +4217,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1965187727801652130}
   - component: {fileID: 3644297326660621705}
-  - component: {fileID: 940845558737175053}
   m_Layer: 0
   m_Name: Alarm (2)
   m_TagString: Untagged
@@ -4280,22 +4279,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &940845558737175053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4329039143689940968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbef00a36540574cbe434e16e946650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lights:
-  - {fileID: 453934514272623693}
-  - {fileID: 455317234366886603}
-  - {fileID: 3644297326660621705}
 --- !u!1 &4651154264112394839
 GameObject:
   m_ObjectHideFlags: 0
@@ -4306,7 +4289,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4039808349074466082}
   - component: {fileID: 455317234366886603}
-  - component: {fileID: 352810502159326787}
   m_Layer: 0
   m_Name: Alarm (1)
   m_TagString: Untagged
@@ -4369,19 +4351,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &352810502159326787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4651154264112394839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbef00a36540574cbe434e16e946650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lights: []
 --- !u!1001 &2915755374863449701
 PrefabInstance:
   m_ObjectHideFlags: 0

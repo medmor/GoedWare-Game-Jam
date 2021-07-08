@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7484904193025439495}
   - component: {fileID: 4606654434784023839}
-  - component: {fileID: 4487717436031237947}
   m_Layer: 0
   m_Name: Alarm (1)
   m_TagString: Untagged
@@ -73,19 +72,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &4487717436031237947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484489774028992384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbef00a36540574cbe434e16e946650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lights: []
 --- !u!1 &756334664607702453
 GameObject:
   m_ObjectHideFlags: 0
@@ -6057,7 +6043,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8631919498641151519}
   - component: {fileID: 865886854848596789}
-  - component: {fileID: 2048754349911226437}
   m_Layer: 0
   m_Name: Alarm (2)
   m_TagString: Untagged
@@ -6120,19 +6105,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &2048754349911226437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6955602904299398425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbef00a36540574cbe434e16e946650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lights: []
 --- !u!1 &7545019025807266905
 GameObject:
   m_ObjectHideFlags: 0
@@ -6143,7 +6115,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8651476424412156233}
   - component: {fileID: 3558360542313128166}
-  - component: {fileID: 1333476171920090115}
   m_Layer: 0
   m_Name: Alarm (3)
   m_TagString: Untagged
@@ -6206,19 +6177,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &1333476171920090115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7545019025807266905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbef00a36540574cbe434e16e946650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lights: []
 --- !u!1001 &2915755374863449701
 PrefabInstance:
   m_ObjectHideFlags: 0

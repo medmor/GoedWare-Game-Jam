@@ -19,6 +19,10 @@ public class WinMenu : MonoBehaviour
     }
     public void Show(int stars)
     {
+        if (GameManager.Instance.LevelNumber == GameManager.Instance.AllLevelsNumber)
+            NextButton.gameObject.SetActive(false);
+        else
+            NextButton.gameObject.SetActive(true);
         for (var i = 0; i < StarsContainer.transform.childCount; i++)
         {
             Destroy(StarsContainer.transform.GetChild(i).gameObject);
@@ -43,12 +47,10 @@ public class WinMenu : MonoBehaviour
     }
     void OnNextButtonClick()
     {
-        SoundManager.Instance.PlayEffects("Click");
-
-        GameManager.Instance.LevelNumber++;
-
-        GameManager.Instance.LoadScene("Main");
         Hide();
+        SoundManager.Instance.PlayEffects("Click");
+        GameManager.Instance.LevelNumber++;
+        GameManager.Instance.LoadScene("Main");
     }
     void OnReplayButtonClick()
     {

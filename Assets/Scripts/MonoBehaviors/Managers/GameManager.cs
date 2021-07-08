@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Manager<GameManager>
 {
     public GameObject[] SystemPrefabs;
+    internal readonly int AllLevelsNumber = 4;
     internal int LevelNumber { get; set; }
     internal MAINGAMESTATES MainGameState = MAINGAMESTATES.RUNNING;
 
@@ -13,10 +14,11 @@ public class GameManager : Manager<GameManager>
     internal VoidEvent JewelryFound { get; private set; } = new VoidEvent();
 
 
+
     void Start()
     {
         InstantiateSystemPrefabs();
-
+        InitProgress();
     }
     void InstantiateSystemPrefabs()
     {
@@ -36,7 +38,6 @@ public class GameManager : Manager<GameManager>
 
         ao.completed += OnLoadOperationComplete;
     }
-
     void OnLoadOperationComplete(AsyncOperation ao)
     {
         var sceneName = SceneManager.GetActiveScene().name;
@@ -46,12 +47,21 @@ public class GameManager : Manager<GameManager>
         if (sceneName == "Boot")
         {
             UIManager.Instance.TopBar.Hide();
+            UIManager.Instance.Controls.Hide();
             UIManager.Instance.IntroUI.Show();
         }
         else if (sceneName == "Main")
         {
             UIManager.Instance.TopBar.Show();
             UIManager.Instance.TopBar.StartTimer();
+            if (Platform.IsMobileBrowser())
+            {
+                UIManager.Instance.Controls.Show();
+            }
+            //things are gettin messy like always
+            //on webgl build, the WinMenu dont hide after next button clicked
+            if (UIManager.Instance.WinMenu.gameObject.activeSelf)
+                UIManager.Instance.WinMenu.Hide();
             SoundManager.Instance.PlayMusic(0);
 
             //Destroy any exsting level
@@ -75,7 +85,6 @@ public class GameManager : Manager<GameManager>
 
         }
     }
-
     public void TogglePause()
     {
         if (MainGameState == MAINGAMESTATES.RUNNING)
@@ -91,6 +100,59 @@ public class GameManager : Manager<GameManager>
             Time.timeScale = 1;
         }
     }
+
+    #region Progress logic
+    private string playerLevelProgressString = "ExtremeLevelProgress";
+    private int playerLevelProgress = 1;
+    private string playerStarsProgressString = "ExtremeStarsProgress";
+    private string[] playerStarsProgress;
+
+    void InitProgress()
+    {
+        if (PlayerPrefs.HasKey(playerLevelProgressString))
+            playerLevelProgress = PlayerPrefs.GetInt(playerLevelProgressString);
+        if (PlayerPrefs.HasKey(playerStarsProgressString))
+            playerStarsProgress = PlayerPrefs.GetString(playerStarsProgressString).Split(',');
+        else
+        {
+            playerStarsProgress = new string[playerLevelProgress];
+            for (var i = 0; i < playerLevelProgress; i++)
+                playerStarsProgress[i] = "0";
+        }
+    }
+    public int GetLevelProgress()
+    {
+        return playerLevelProgress;
+    }
+    public void SetLevelProgress()
+    {
+
+        var nextLevel = LevelNumber + 1;
+        if (nextLevel > playerLevelProgress && nextLevel <= AllLevelsNumber)
+        {
+            playerLevelProgress = nextLevel;
+            PlayerPrefs.SetInt(playerLevelProgressString, nextLevel);
+            PlayerPrefs.Save();
+        }
+    }
+    public bool IsLevelLocked(int level)
+    {
+        return level > playerLevelProgress;
+    }
+    public void SetLevelStarsProgress(int stars)
+    {
+        if (stars > GetLevelStarsProgress(LevelNumber))
+        {
+            playerStarsProgress[LevelNumber - 1] = stars.ToString();
+            PlayerPrefs.SetString(playerStarsProgressString, string.Join(",", playerStarsProgress));
+            PlayerPrefs.Save();
+        }
+    }
+    public int GetLevelStarsProgress(int level)
+    {
+        return int.Parse(playerStarsProgress[level - 1]);
+    }
+    #endregion
 
     public enum MAINGAMESTATES
     {

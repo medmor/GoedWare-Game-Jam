@@ -58,7 +58,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6966890639456716598}
   - component: {fileID: 5018204157402241639}
-  - component: {fileID: 6745769089400242587}
   m_Layer: 0
   m_Name: Alarm
   m_TagString: Untagged
@@ -121,16 +120,3 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &6745769089400242587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727593528025906512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbef00a36540574cbe434e16e946650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lights: []

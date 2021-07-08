@@ -5,4 +5,9 @@ public class UIManager : Manager<UIManager>
     public PauseMenu PauseMenu;
     public WinMenu WinMenu;
     public LoseMenu LoseMenu;
+    public Controls Controls;
+    private void Start()
+    {
+        IntroUI.Show();
+    }
 }

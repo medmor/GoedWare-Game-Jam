@@ -14,6 +14,15 @@ public class Jewelry : MonoBehaviour
             GameManager.Instance.JewelryFound.Invoke();
             transform.position = collision.transform.position + Vector3.down * .25f;
 
+            int stars = 3;
+            if (UIManager.Instance.TopBar.IsTimeDone())
+                stars--;
+            if (UIManager.Instance.TopBar.GetLightsNumber() == 0)
+                stars--;
+            UIManager.Instance.WinMenu.Show(stars);
+
+            GameManager.Instance.SetLevelProgress();
+            GameManager.Instance.SetLevelStarsProgress(stars);
         }
     }
 
