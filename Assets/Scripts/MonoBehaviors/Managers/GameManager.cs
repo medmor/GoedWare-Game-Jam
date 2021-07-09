@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Manager<GameManager>
 {
     public GameObject[] SystemPrefabs;
-    internal readonly int AllLevelsNumber = 4;
+    internal readonly int AllLevelsNumber = 3;
     internal int LevelNumber { get; set; }
     internal MAINGAMESTATES MainGameState = MAINGAMESTATES.RUNNING;
 
@@ -52,17 +52,16 @@ public class GameManager : Manager<GameManager>
         }
         else if (sceneName == "Main")
         {
+            SoundManager.Instance.PlayMusic(0);
             UIManager.Instance.TopBar.Show();
             UIManager.Instance.TopBar.StartTimer();
+            UIManager.Instance.TopBar.SetLightsNumber(3);//to change later
             if (Platform.IsMobileBrowser())
-            {
                 UIManager.Instance.Controls.Show();
-            }
             //things are gettin messy like always
             //on webgl build, the WinMenu dont hide after next button clicked
             if (UIManager.Instance.WinMenu.gameObject.activeSelf)
                 UIManager.Instance.WinMenu.Hide();
-            SoundManager.Instance.PlayMusic(0);
 
             //Destroy any exsting level
             var currentLevel = GameObject.Find(LevelNumber.ToString());
@@ -75,15 +74,18 @@ public class GameManager : Manager<GameManager>
             vCam.GetComponent<CinemachineConfiner>().m_BoundingShape2D
                 = level.transform.Find("CamConfiner").GetComponent<PolygonCollider2D>();
 
-            //Instantiate the player
-            var player = Instantiate(Resources.Load("Player")) as GameObject;
-            player.transform.position = GameObject.Find(LevelNumber + "(Clone)/StartPos").transform.position;
-
-            //Set cam to follow player
-            vCam.GetComponent<CinemachineVirtualCamera>().Follow = player.transform;
-            //vCam.GetComponent<CinemachineVirtualCamera>().LookAt = player.transform;
-
         }
+    }
+    public void SpawnPlayer()
+    {
+        var vCam = Camera.main.transform.GetChild(0);
+        vCam.gameObject.SetActive(true);
+        //Instantiate the player
+        var player = Instantiate(Resources.Load("Player")) as GameObject;
+        player.transform.position = GameObject.Find(LevelNumber + "(Clone)/StartPos").transform.position;
+
+        //Set cam to follow player
+        vCam.GetComponent<CinemachineVirtualCamera>().Follow = player.transform;
     }
     public void TogglePause()
     {
@@ -115,8 +117,8 @@ public class GameManager : Manager<GameManager>
             playerStarsProgress = PlayerPrefs.GetString(playerStarsProgressString).Split(',');
         else
         {
-            playerStarsProgress = new string[playerLevelProgress];
-            for (var i = 0; i < playerLevelProgress; i++)
+            playerStarsProgress = new string[AllLevelsNumber];
+            for (var i = 0; i < AllLevelsNumber; i++)
                 playerStarsProgress[i] = "0";
         }
     }

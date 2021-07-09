@@ -48,11 +48,14 @@ public class TopBar : MonoBehaviour
     }
     void OnLightsButtonClick()
     {
-        SoundManager.Instance.PlayEffects("Click");
 
-        if (player == null)
+        if (player == null && GameObject.Find("Player(Clone)"))
             player = GameObject.Find("Player(Clone)").GetComponent<Player>();
-        player.StartLight();
+        if (player)
+        {
+            SoundManager.Instance.PlayEffects("Click");
+            player.StartLight();
+        }
     }
     public bool IsTimeDone()
     {

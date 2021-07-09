@@ -12,10 +12,12 @@ public class GlobalLight : MonoBehaviour
     {
         light2D = GetComponent<Light2D>();
 
-        StartCoroutine(FadeOut());
-
         GameManager.Instance.JewelryFound.AddListener(SwitchOn);
         GameManager.Instance.PlayerDetected.AddListener(OnPlayerDetected);
+    }
+    public void StartFadingOut()
+    {
+        StartCoroutine(FadeOut());
     }
 
     void SwitchOn()
@@ -28,7 +30,7 @@ public class GlobalLight : MonoBehaviour
     {
         while (light2D.intensity > 0)
         {
-            light2D.intensity -= .01f;
+            light2D.intensity -= .015f;
             yield return new WaitForSeconds(.05f);
         }
     }

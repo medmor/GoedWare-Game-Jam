@@ -34,9 +34,7 @@ public class IntroUI : MonoBehaviour
     private void InitLevelsButtons()
     {
         for (var i = 0; i < LevelsContainer.transform.childCount; i++)
-        {
             Destroy(LevelsContainer.transform.GetChild(i).gameObject);
-        }
         for (var i = 1; i <= GameManager.Instance.AllLevelsNumber; i++)
         {
             var levelButtonObject = Instantiate(LevelButtonPref);
@@ -57,7 +55,6 @@ public class IntroUI : MonoBehaviour
             else
             {
                 var levelNumber = int.Parse(text.text.Substring(2, 1));
-
                 var starsContainerTransform = levelButtonObject.transform.GetChild(2);
 
                 for (var j = 0; j < starsContainerTransform.childCount; j++)
